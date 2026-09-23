@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>Open Source Society Manchester</title>
+  <!-- Chamfered square, same corner cut as the buttons on the site -->
+  <path d="M6 0 H32 V26 L26 32 H0 V6 Z" fill="#000000"/>
+  <g fill="none" stroke="#BDE9AB" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 10 L15 16 L9 22"/>
+    <path d="M18 22 H24"/>
+  </g>
+</svg>

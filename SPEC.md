@@ -46,6 +46,7 @@ Text that rarely changes (about, what we do, FAQ) is written straight into the H
 ├── index.html            main page, all society sections
 ├── hackathon.html        hackathon page
 ├── 404.html              not found page (GitHub Pages uses this automatically)
+├── favicon.ico           at the root, because browsers ask for /favicon.ico
 ├── README.md             how to run locally and how to edit content
 ├── SPEC.md               this file
 └── assets/
@@ -56,7 +57,8 @@ Text that rarely changes (about, what we do, FAQ) is written straight into the H
     │   └── main.js       renders data.js into the page, nav toggle
     └── img/
         ├── hackathon-logo.png   transparent PNG made from the JPEG, want an SVG
-        ├── favicon.png
+        ├── favicon.svg          terminal prompt mark, crisp at 16px
+        ├── apple-touch-icon.png
         └── og-image.png         preview image for link sharing
 ```
 
@@ -290,7 +292,7 @@ Answer these as they get decided, then move the answer into section 11.
 - Confirm the live site address, then make the `og:image` paths in `index.html` and `hackathon.html` full URLs so link previews work
 - Two different Discord invites are in use, `Gbe2rGANzu` (given directly) and `Zn5VFzNQPR` (on the Linktree). Check which is current and put that one in `data.js`
 - Tracks and prizes for the hack day
-- Custom domain, or stay on the github.io address (costs money, check with the treasurer)
+- Nicer URL. Options are renaming the repo to lowercase, moving the site into a repo named `Open-Source-Society-UoM.github.io` so it serves with no path, or buying a domain (roughly £5 to £15 a year). Renaming breaks existing links, so update the Linktree and MLH listing at the same time
 - Short name for the society, if any (used in the header on mobile)
 
 
@@ -298,6 +300,7 @@ Answer these as they get decided, then move the answer into section 11.
 
 Newest first. One line each.
 
+- 2026-09-23 New favicon. The old one was the whole logo shrunk down and the bee turned to mush at 16px, so it's now the `>_` prompt in a chamfered square, as `favicon.svg`, `favicon.ico` and a 180px apple touch icon
 - 2026-09-23 Filled in the Hacktoberfest Hack Day (11 Oct 2026, SU Theatre), its schedule and real FAQ answers, from the MLH listing. Registration goes to MLH, code of conduct is MLH's
 - 2026-09-23 Added `hackathon.time`, shown under the date and hidden while empty
 - 2026-09-23 GitHub org, SU membership page, repo and WhatsApp links filled in from the society Linktree
