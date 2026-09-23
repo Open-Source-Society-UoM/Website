@@ -1,0 +1,288 @@
+/* Open Source Society Manchester. See SPEC.md section 6 for the design system. */
+
+/* ===== TOKENS ===== */
+:root {
+  color-scheme: dark;
+
+  --black: #000000;
+  --mint: #BDE9AB;
+  --mint-dim: #68805E;
+  --text: #E6F2E0;
+  --text-dim: #A9B8A3;
+  --honey: #F2C14E;
+
+  --font-display: "Chakra Petch", "Arial Narrow", sans-serif;
+  --font-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale from The Elements of Typographic Style */
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-21: 1.3125rem;
+  --fs-24: 1.5rem;
+  --fs-h2: clamp(1.75rem, 1.1rem + 2.6vw, 2.25rem);
+  --fs-h1: clamp(2.25rem, 1rem + 5vw, 3.75rem);
+
+  --stroke: 2px;
+  --chamfer: 10px;
+  --max-width: 72rem;
+  --measure: 65ch;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-space: clamp(3.5rem, 8vw, 6rem);
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-18);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--mint);
+}
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); margin-bottom: 1.5rem; }
+h3 { font-size: var(--fs-24); }
+
+p { margin: 0 0 1em; max-width: var(--measure); }
+
+a { color: var(--mint); text-underline-offset: 0.2em; }
+a:hover { color: var(--text); }
+
+:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+code { font-family: var(--font-mono); }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-space); }
+.section + .section { border-top: var(--stroke) solid var(--mint-dim); }
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+/* Wider columns so four items sit two by two instead of three plus one */
+/* Three across, so six committee members sit in two even rows */
+.grid--trios { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.grid--pairs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+
+/* ===== COMPONENTS ===== */
+
+/* Skip link, hidden until focused */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 20;
+  padding: 0.5rem 1rem;
+  background: var(--mint);
+  color: var(--black);
+}
+.skip-link:focus { top: 1rem; }
+
+/* Header and nav */
+.header {
+  position: sticky;
+  /* nav drops down below this on mobile */
+  top: 0;
+  z-index: 10;
+  background: var(--black);
+  border-bottom: var(--stroke) solid var(--mint-dim);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+}
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-21);
+  text-decoration: none;
+}
+.nav__list { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
+.nav__link { font-family: var(--font-display); font-weight: 600; text-decoration: none; }
+.nav__link:hover,
+.nav__link[aria-current="page"] { text-decoration: underline; }
+/* Scoped to .header so it beats .button, which is declared later */
+.header .nav__toggle { display: none; padding: 0.5rem 1rem; font-size: var(--fs-16); }
+
+/* Buttons. The chamfer is drawn on pseudo elements so focus outlines are not clipped. */
+.button {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.4rem;
+  border: 0;
+  background: none;
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button::before,
+.button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.button::before { --c: var(--chamfer); inset: 0; background: var(--mint); }
+.button:hover { color: var(--black); }
+.button:hover::before { background: var(--text); }
+
+.button--outline { color: var(--mint); }
+.button--outline::after { --c: calc(var(--chamfer) - 1px); inset: var(--stroke); background: var(--black); }
+.button--outline:hover::before { background: var(--mint); }
+.button--outline:hover::after { background: var(--mint); }
+
+.button-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+/* Line art panel */
+.panel { border: var(--stroke) solid var(--mint-dim); padding: clamp(1.25rem, 3vw, 2rem); }
+
+/* Item with a line on its left, used for activities, projects, committee */
+.item { border-left: var(--stroke) solid var(--mint-dim); padding-left: 1.25rem; }
+.item h3 { font-size: var(--fs-21); margin-bottom: 0.25rem; }
+.item p { margin: 0; }
+.item__role { color: var(--text-dim); }
+
+/* Events */
+.event-list { display: grid; gap: 1rem; }
+.event {
+  display: grid;
+  gap: 0.25rem 2rem;
+  grid-template-columns: 9rem 1fr;
+  border: var(--stroke) solid var(--mint-dim);
+  padding: 1.25rem;
+}
+.event__date { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-21); color: var(--honey); }
+.event--past .event__date { color: var(--text-dim); }
+.event h3 { font-size: var(--fs-21); margin-bottom: 0.25rem; }
+.event__meta { color: var(--text-dim); margin-bottom: 0.5rem; }
+
+.past { margin-top: 2rem; }
+.past summary { cursor: pointer; font-family: var(--font-display); font-weight: 600; color: var(--mint); }
+.past .event-list { margin-top: 1rem; }
+
+.empty { color: var(--text-dim); }
+
+/* Status text, e.g. "Registration opens soon" */
+.status { color: var(--honey); font-family: var(--font-display); font-weight: 600; }
+
+/* Numbered steps, only for real sequences */
+.steps { counter-reset: step; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.step { counter-increment: step; }
+.step::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--mint);
+  margin-bottom: 0.75rem;
+}
+
+/* Timeline with circuit nodes, like the logo. Hackathon schedule only. */
+.timeline { border-left: var(--stroke) solid var(--mint); margin-left: 0.5rem; }
+.timeline:has(.empty) { border-left: 0; margin-left: 0; }
+.timeline__item { position: relative; padding: 0 0 1.5rem 1.75rem; }
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(-0.5rem - 1px);
+  top: 0.35rem;
+  width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--mint);
+  border-radius: 50%;
+  background: var(--black);
+}
+.timeline__item:last-child { padding-bottom: 0; }
+.timeline__time { font-family: var(--font-display); font-weight: 600; color: var(--mint); display: block; }
+
+/* FAQ */
+.faq { display: grid; gap: 0.75rem; max-width: 48rem; }
+.faq details { border: var(--stroke) solid var(--mint-dim); padding: 1rem 1.25rem; }
+.faq summary { cursor: pointer; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-21); color: var(--mint); }
+.faq details p { margin: 0.75rem 0 0; }
+
+/* ===== SECTIONS ===== */
+.hero { padding-block: clamp(3rem, 10vw, 7rem); }
+.hero__inner { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1.4fr 1fr; }
+.hero__sub { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-24); color: var(--text-dim); margin-bottom: 1.5rem; }
+.hero__tagline { font-size: var(--fs-21); }
+.hero__logo { width: min(100%, 24rem); justify-self: end; }
+.hero__details { color: var(--text-dim); font-size: var(--fs-21); margin-bottom: 0.25rem; }
+
+.cursor { color: var(--mint); animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.teaser { display: grid; gap: 0.5rem; }
+.teaser h2 { margin-bottom: 0.5rem; }
+.teaser p { margin: 0; }
+.teaser .button-row { margin-top: 1rem; }
+
+.footer { border-top: var(--stroke) solid var(--mint-dim); padding-block: 3rem; color: var(--text-dim); }
+.footer__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 1.5rem; }
+.footer p { font-size: var(--fs-16); }
+
+.not-found { min-height: 60vh; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48rem) {
+  .js .header .nav__toggle { display: inline-flex; }
+  .js .nav { display: none; }
+  .js .nav--open { display: block; position: absolute; top: 100%; left: 0; right: 0; background: var(--black); border-block: var(--stroke) solid var(--mint-dim); }
+  .js .nav--open .nav__list { flex-direction: column; padding: 1rem var(--gutter) 1.5rem; gap: 1rem; }
+
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__logo { order: -1; width: 10rem; justify-self: start; }
+  .event { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor { animation: none; }
+}
+
+/* ===== UTILITIES ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+[hidden] { display: none !important; }

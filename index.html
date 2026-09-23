@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Source Society | University of Manchester</title>
+  <meta name="description" content="The University of Manchester's Open Source Society. Workshops, contribution sprints, talks and socials for students of any skill level.">
+
+  <!-- Link previews on WhatsApp, Discord etc. TODO make og:image and og:url absolute once the site address is known -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Open Source Society | University of Manchester">
+  <meta property="og:description" content="Learn, build and contribute to open source with other Manchester students.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Chakra+Petch:wght@600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Added before paint so the mobile menu doesn't flash open -->
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== SECTION header (copy of this is in every page) ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">Open Source Society</a>
+      <button class="button button--outline nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html#about">About</a></li>
+          <li><a class="nav__link" href="index.html#events">Events</a></li>
+          <li><a class="nav__link" href="hackathon.html">Hackathon</a></li>
+          <li><a class="nav__link" href="index.html#projects">Projects</a></li>
+          <li><a class="nav__link" href="index.html#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== SECTION hero ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div>
+          <h1>Open Source Society</h1>
+          <p class="hero__sub">University of Manchester</p>
+          <p class="hero__tagline">We learn, build and contribute to open source together. Every skill level welcome.<span class="cursor" aria-hidden="true">_</span></p>
+          <div class="button-row">
+            <!-- href is a fallback for when JS is off. data.js is the real source. -->
+            <a class="button" data-link="discord" href="https://discord.gg/Gbe2rGANzu">Join the Discord</a>
+            <a class="button button--outline" data-link="membership" href="" hidden>Become a member</a>
+          </div>
+        </div>
+        <!-- TODO swap for the society logo if one exists, this is the hackathon logo -->
+        <img class="hero__logo" src="assets/img/hackathon-logo.png" alt="" width="443" height="443">
+      </div>
+    </section>
+
+    <!-- ===== SECTION about ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2>About us</h2>
+        <p>Open source software is code that anyone can read, use and improve. Linux, Firefox, Python and most of the tools you use for your degree are built this way, by people all over the world working in public.</p>
+        <p>We're a student society at the University of Manchester for anyone who wants to get involved. You don't need to have contributed before, or even be on a computing course. We'll help you make your first contribution and meet people who like building things.</p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION what-we-do ===== -->
+    <section class="section" id="what-we-do">
+      <div class="container">
+        <h2>What we do</h2>
+        <ul class="grid grid--pairs">
+          <li class="item">
+            <h3>Workshops</h3>
+            <p>Hands-on sessions on Git, Linux, the command line and the tools real projects use.</p>
+          </li>
+          <li class="item">
+            <h3>Contribution sprints</h3>
+            <p>Pick an issue on a real project and work through it with others in the room to help.</p>
+          </li>
+          <li class="item">
+            <h3>Talks</h3>
+            <p>Maintainers and engineers on how open source works in practice and in industry.</p>
+          </li>
+          <li class="item">
+            <h3>Socials</h3>
+            <p>Food, games and a chance to meet the people behind the Discord usernames.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== SECTION events (filled from data.js) ===== -->
+    <section class="section" id="events">
+      <div class="container">
+        <h2>Events</h2>
+        <ul class="event-list" id="events-upcoming"></ul>
+        <details class="past" id="events-past-wrap" hidden>
+          <summary>Past events</summary>
+          <ul class="event-list" id="events-past"></ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== SECTION hackathon teaser (filled from data.js) ===== -->
+    <section class="section" id="hackathon">
+      <div class="container">
+        <div class="panel teaser">
+          <h2 data-hack="name">Hackathon</h2>
+          <p class="hero__details"><span data-hack="date">Date coming soon</span>, <span data-hack="venue">Venue coming soon</span></p>
+          <p class="status" data-hack="status"></p>
+          <div class="button-row">
+            <a class="button" href="hackathon.html">See the hackathon page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION projects (filled from data.js) ===== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <ul class="grid" id="projects-list"></ul>
+        <p data-link-wrap hidden><a data-link="github" href="">See all our code on GitHub</a></p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION committee (filled from data.js) ===== -->
+    <section class="section" id="committee">
+      <div class="container">
+        <h2>Committee</h2>
+        <ul class="grid grid--trios" id="committee-list"></ul>
+      </div>
+    </section>
+
+    <!-- ===== SECTION join ===== -->
+    <section class="section" id="join">
+      <div class="container">
+        <h2>How to join</h2>
+        <ol class="steps">
+          <li class="step">
+            <h3>Join the Discord</h3>
+            <p>It's where we post events and where most of the chat happens.</p>
+            <a data-link="discord" href="https://discord.gg/Gbe2rGANzu">Join the Discord</a>
+          </li>
+          <li class="step">
+            <h3>Become a member</h3>
+            <p>Buy a membership on the Students' Union website so you're covered at our events.</p>
+            <!-- TODO add the SU page to data.js links.membership -->
+            <a data-link="membership" href="" hidden>Become a member</a>
+          </li>
+          <li class="step">
+            <h3>Come along</h3>
+            <p>Pick any event above and turn up. You don't need to bring anything but a laptop if you have one.</p>
+            <a href="#events">See events</a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== SECTION footer (copy of this is in every page) ===== -->
+  <footer class="footer">
+    <div class="container">
+      <ul class="footer__links">
+        <li data-link-wrap><a data-link="email" href="mailto:open.source@manchesterstudentsunion.com">Email us</a></li>
+        <li data-link-wrap><a data-link="instagram" href="https://instagram.com/opensourcesocietymcr">Instagram</a></li>
+        <li data-link-wrap><a data-link="discord" href="https://discord.gg/Gbe2rGANzu">Discord</a></li>
+        <li data-link-wrap hidden><a data-link="github" href="">GitHub</a></li>
+      </ul>
+      <p data-link-wrap hidden>This site is open source. <a data-link="repo" href="">Improve it on GitHub</a>.</p>
+      <!-- TODO check the exact affiliation wording with the Students' Union -->
+      <p>A student society of the University of Manchester Students' Union.</p>
+    </div>
+  </footer>
+</body>
+</html>

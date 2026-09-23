@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- main.js swaps "Hackathon" for the real name once it's in data.js -->
+  <title>Hackathon | Open Source Society Manchester</title>
+  <meta name="description" content="A student hackathon run by the University of Manchester's Open Source Society. Beginners welcome.">
+
+  <!-- TODO make og:image absolute once the site address is known -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hackathon | Open Source Society Manchester">
+  <meta property="og:description" content="A student hackathon in Manchester. Beginners welcome.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Chakra+Petch:wght@600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/data.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="hackathon">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== SECTION header (copy of this is in every page) ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">Open Source Society</a>
+      <button class="button button--outline nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html#about">About</a></li>
+          <li><a class="nav__link" href="index.html#events">Events</a></li>
+          <li><a class="nav__link" href="hackathon.html" aria-current="page">Hackathon</a></li>
+          <li><a class="nav__link" href="index.html#projects">Projects</a></li>
+          <li><a class="nav__link" href="index.html#join">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== SECTION hero (filled from data.js) ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div>
+          <h1 data-hack="name">Hackathon</h1>
+          <p class="hero__details" data-hack="date">Date coming soon</p>
+          <p class="hero__details" data-hack="venue">Venue coming soon</p>
+          <p class="status" data-hack="status"></p>
+          <div class="button-row">
+            <!-- Goes to hackathon.registerLink, or the Discord if that's empty -->
+            <a class="button" data-hack="register" href="https://discord.gg/Gbe2rGANzu">Register interest</a>
+            <a class="button button--outline" href="#faq">Read the FAQ</a>
+          </div>
+        </div>
+        <img class="hero__logo" data-hack="logo" src="assets/img/hackathon-logo.png" alt="Hackathon logo" width="443" height="443">
+      </div>
+    </section>
+
+    <!-- ===== SECTION about ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2>What's a hackathon?</h2>
+        <p>A hackathon is an event where you team up and build something from scratch in a short, fixed time. It could be an app, a tool, a game or something that barely works but is fun to show off.</p>
+        <p>You don't need to be an expert. Plenty of people come to their first hackathon to learn, and there will be mentors around to help you get unstuck.</p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION tracks (filled from data.js) ===== -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <h2>Tracks and prizes</h2>
+        <ul class="grid" id="tracks-list"></ul>
+      </div>
+    </section>
+
+    <!-- ===== SECTION schedule (filled from data.js) ===== -->
+    <section class="section" id="schedule">
+      <div class="container">
+        <h2>Schedule</h2>
+        <ol class="timeline" id="schedule-list"></ol>
+      </div>
+    </section>
+
+    <!-- ===== SECTION sponsors (filled from data.js) ===== -->
+    <section class="section" id="sponsors">
+      <div class="container">
+        <h2>Sponsors</h2>
+        <ul class="grid" id="sponsors-list"></ul>
+        <p class="button-row" data-link-wrap>
+          <a class="button button--outline" data-link="email" href="mailto:open.source@manchesterstudentsunion.com">Email us about sponsoring</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION faq ===== -->
+    <!-- TODO confirm every answer below with the committee before launch -->
+    <section class="section" id="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>Who can take part?</summary>
+            <p>Any University of Manchester student, on any course and at any level. <!-- TODO decide if other universities can join --></p>
+          </details>
+          <details>
+            <summary>How much does it cost?</summary>
+            <p>Nothing. It's free to take part. <!-- TODO confirm --></p>
+          </details>
+          <details>
+            <summary>I've never done a hackathon. Can I still come?</summary>
+            <p>Yes. Beginners are very welcome, and we'll have mentors on hand to help.</p>
+          </details>
+          <details>
+            <summary>Do I need a team?</summary>
+            <p>No. You can come with friends or find a team on the day. <!-- TODO set the team size limit --></p>
+          </details>
+          <details>
+            <summary>What should I bring?</summary>
+            <p>A laptop, a charger and your student ID. <!-- TODO add anything else, e.g. sleeping bag if overnight --></p>
+          </details>
+          <details>
+            <summary>Will there be food?</summary>
+            <p>Details coming soon. Tell us about any dietary needs when you register. <!-- TODO --></p>
+          </details>
+          <details>
+            <summary>Is the venue accessible?</summary>
+            <p>We'll share full access information once the venue is confirmed. If you have any questions, email us and we'll help.</p>
+          </details>
+          <details>
+            <summary>Is there a code of conduct?</summary>
+            <p>Yes. We want everyone to feel welcome, and we'll publish our code of conduct before registration opens. <!-- TODO link it here --></p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== SECTION footer (copy of this is in every page) ===== -->
+  <footer class="footer">
+    <div class="container">
+      <ul class="footer__links">
+        <li data-link-wrap><a data-link="email" href="mailto:open.source@manchesterstudentsunion.com">Email us</a></li>
+        <li data-link-wrap><a data-link="instagram" href="https://instagram.com/opensourcesocietymcr">Instagram</a></li>
+        <li data-link-wrap><a data-link="discord" href="https://discord.gg/Gbe2rGANzu">Discord</a></li>
+        <li data-link-wrap hidden><a data-link="github" href="">GitHub</a></li>
+      </ul>
+      <p data-link-wrap hidden>This site is open source. <a data-link="repo" href="">Improve it on GitHub</a>.</p>
+      <p>A student society of the University of Manchester Students' Union.</p>
+    </div>
+  </footer>
+</body>
+</html>
