@@ -4,31 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found | Open Source Society Manchester</title>
-  <link rel="icon" href="/assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Chakra+Petch:wght@600&display=swap">
-  <!-- Root-relative paths, because this page can be served from any URL.
-       TODO if the site lives at username.github.io/repo-name/, prefix these with /repo-name -->
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body data-page="404">
-  <header class="header">
-    <div class="container header__inner">
-      <a class="brand" href="/">Open Source Society</a>
-    </div>
-  </header>
 
-  <main id="main">
-    <section class="hero not-found">
-      <div class="container">
-        <h1>Page not found</h1>
-        <p class="hero__tagline">There's nothing at this address. It may have moved, or the link may have a typo.<span class="cursor" aria-hidden="true">_</span></p>
-        <div class="button-row">
-          <a class="button" href="/">Go to the home page</a>
-        </div>
-      </div>
-    </section>
-  </main>
+  <!-- This page is self contained on purpose. GitHub Pages serves it for any
+       missing address, at any depth, so a link to style.css would often break.
+       Everything else on the site uses assets/css/style.css as normal. -->
+  <style>
+    :root { color-scheme: dark; --black: #000; --mint: #BDE9AB; --text: #E6F2E0; --mint-dim: #68805E; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+      padding: 2rem clamp(1.25rem, 4vw, 2.5rem);
+      background: var(--black);
+      color: var(--text);
+      font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    h1 { margin: 0; font-size: clamp(2.25rem, 1rem + 5vw, 3.75rem); line-height: 1.1; color: var(--mint); font-family: "Chakra Petch", "Arial Narrow", sans-serif; }
+    p { margin: 0; max-width: 65ch; }
+    a { color: var(--mint); text-underline-offset: 0.2em; }
+    a:hover { color: var(--text); }
+    :focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; }
+    .cursor { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+  </style>
+</head>
+<body>
+  <h1>Page not found</h1>
+  <p>There's nothing at this address. It may have moved, or the link may have a typo.<span class="cursor" aria-hidden="true">_</span></p>
+  <!-- Relative link, so it works whether the site sits at a domain root or under a repo name -->
+  <p><a href="./">Go to the home page</a></p>
 </body>
 </html>

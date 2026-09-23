@@ -1,6 +1,6 @@
 # Open Source Society Manchester website spec
 
-Version 0.2 (16 Sep 2026). Milestones 1 to 4 are built. Owner is Tanish Patel (Vice President).
+Version 0.3 (23 Sep 2026). Milestones 1 to 5 are built and the site is live on GitHub Pages. Owner is Tanish Patel (Vice President).
 
 ## How to use this file
 
@@ -145,6 +145,7 @@ const SITE = {
   hackathon: {
     name: "",           // TODO, show "Hackathon" if empty
     date: "",           // empty shows "Date coming soon"
+    time: "",           // e.g. "12:00 to 19:15", hidden while empty
     venue: "",
     status: "Registration opens soon",
     registerLink: "",   // empty falls back to the Discord link
@@ -165,7 +166,7 @@ Rendering rules for `main.js`
 
 How links get their URLs. Any element with `data-link="discord"` (or any key in `links`) gets its `href` from `data.js`. If the value is empty, the element is hidden, or its nearest `data-link-wrap` parent if it has one. Known links also have the real URL in the HTML as a fallback for when JavaScript is off.
 
-How hackathon details get filled. Any element with `data-hack="name"`, `"date"`, `"venue"`, `"status"`, `"register"` or `"logo"` is filled from `SITE.hackathon`. Lists fill `#tracks-list`, `#schedule-list` and `#sponsors-list`. Other lists fill `#events-upcoming`, `#events-past`, `#projects-list` and `#committee-list`.
+How hackathon details get filled. Any element with `data-hack="name"`, `"date"`, `"venue"`, `"time"`, `"status"`, `"register"` or `"logo"` is filled from `SITE.hackathon`. Lists fill `#tracks-list`, `#schedule-list` and `#sponsors-list`. Other lists fill `#events-upcoming`, `#events-past`, `#projects-list` and `#committee-list`.
 
 
 ## 6. Design system
@@ -269,7 +270,7 @@ These exist so a future session (or a new committee member) can find and change 
 
 Build in this order, one per session.
 
-Status. 1 to 4 done on 16 Sep 2026. Next is 5, then filling in the open questions.
+Status. 1 to 4 done on 16 Sep 2026, 5 done on 23 Sep 2026 (live on GitHub Pages at `Open-Source-Society-UoM/Website`). Next is working through the open questions.
 
 1. **Skeleton.** File structure, `style.css` tokens and base styles, header, footer, hero, `404.html`, README stub
 2. **Index content.** All `index.html` sections, `data.js` with placeholders, `main.js` rendering with empty states
@@ -283,16 +284,13 @@ Status. 1 to 4 done on 16 Sep 2026. Next is 5, then filling in the open question
 Answer these as they get decided, then move the answer into section 11.
 
 - Does the society have its own logo, or should the whole site use the hackathon look for now?
-- Hackathon name, date, venue, expected size and budget
-- Is the hackathon going to be MLH affiliated? That affects the code of conduct and some branding rules
-- What should "Register interest" point to (Google Form, Tally, a Discord channel)?
-- Society GitHub org URL, and where this site's repo will live
-- SU society page URL for membership
 - Whether committee members want their GitHub profiles linked
-- Real events for this semester
 - Can we get the logo as an SVG from whoever designed it? The current file is a 443px JPEG and will look soft when shown large
 - Check the Students' Union's rules for society websites, including how to word the affiliation line and not using the University crest
-- Default `username.github.io` address, or a custom domain (costs money, check with the treasurer)
+- Confirm the live site address, then make the `og:image` paths in `index.html` and `hackathon.html` full URLs so link previews work
+- Two different Discord invites are in use, `Gbe2rGANzu` (given directly) and `Zn5VFzNQPR` (on the Linktree). Check which is current and put that one in `data.js`
+- Tracks and prizes for the hack day
+- Custom domain, or stay on the github.io address (costs money, check with the treasurer)
 - Short name for the society, if any (used in the header on mobile)
 
 
@@ -300,6 +298,10 @@ Answer these as they get decided, then move the answer into section 11.
 
 Newest first. One line each.
 
+- 2026-09-23 Filled in the Hacktoberfest Hack Day (11 Oct 2026, SU Theatre), its schedule and real FAQ answers, from the MLH listing. Registration goes to MLH, code of conduct is MLH's
+- 2026-09-23 Added `hackathon.time`, shown under the date and hidden while empty
+- 2026-09-23 GitHub org, SU membership page, repo and WhatsApp links filled in from the society Linktree
+- 2026-09-23 `404.html` is now self contained with its own inline styles. GitHub Pages serves it for any missing address, so a link to `style.css` broke on a project site served under a repo name
 - 2026-09-16 Added the full committee from the SU society page (six people). Committee list uses `.grid--trios` so it sits in two rows of three
 - 2026-09-16 Built milestones 1 to 4. Checked with screenshots at 1280px and 390px, with empty and filled data
 - 2026-09-16 The index hero uses the hackathon logo until the society has its own. The index hackathon teaser has no logo so it isn't shown twice

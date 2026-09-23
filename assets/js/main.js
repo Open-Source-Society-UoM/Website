@@ -133,6 +133,7 @@ function renderHackathon() {
   const values = {
     name,
     date: h.date ? fullDate.format(parseDate(h.date)) : "Date coming soon",
+    time: h.time,
     venue: h.venue || "Venue coming soon",
     status: h.status
   };
@@ -141,7 +142,7 @@ function renderHackathon() {
     const key = node.dataset.hack;
     if (key === "register") node.href = h.registerLink || SITE.links.discord;
     else if (key === "logo") node.alt = `${name} logo`;
-    else if (key === "status") { node.textContent = values.status; node.hidden = !values.status; }
+    else if (key === "status" || key === "time") { node.textContent = values[key]; node.hidden = !values[key]; }
     else if (key in values) node.textContent = values[key];
   });
 
