@@ -69,8 +69,15 @@ const SITE = {
       { time: "18:30", item: "Prizes and wrap up" },
       { time: "20:00", item: "Venue closes" }
     ],
+    // Sponsor logos sit in assets/img/sponsors/. Use the sponsor's own official
+    // white logo file, don't recolour or redraw it, most have brand guidelines.
+    // Leave logo empty to show the sponsor's name as text instead.
     sponsors: [
-      { name: "", link: "" }
+      {
+        name: "ElevenLabs",
+        link: "https://elevenlabs.io",
+        logo: "assets/img/sponsors/elevenlabs-white.svg"
+      }
     ]
   }
 };

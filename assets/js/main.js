@@ -171,10 +171,28 @@ function renderHackathon() {
   const sponsors = document.getElementById("sponsors-list");
   if (sponsors) {
     fillList(sponsors, h.sponsors.filter((s) => s.name), (sponsor) => {
-      const li = el("li", "item");
-      const heading = el("h3");
-      heading.append(sponsor.link ? linkTo(sponsor.link, sponsor.name) : sponsor.name);
-      li.append(heading);
+      const li = el("li", "sponsor");
+
+      // A sponsor with a logo file shows the logo, otherwise just their name
+      let content;
+      if (sponsor.logo) {
+        content = el("img", "sponsor__logo");
+        content.src = sponsor.logo;
+        content.alt = sponsor.name;
+        content.loading = "lazy";
+      } else {
+        content = el("span", "sponsor__name", sponsor.name);
+      }
+
+      if (sponsor.link) {
+        const a = el("a", "sponsor__link");
+        a.href = sponsor.link;
+        a.rel = "noopener";
+        a.append(content);
+        li.append(a);
+      } else {
+        li.append(el("div", "sponsor__link")).lastChild.append(content);
+      }
       return li;
     }, "Sponsors will be announced soon.");
   }

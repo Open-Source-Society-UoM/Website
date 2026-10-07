@@ -176,6 +176,34 @@ code { font-family: var(--font-mono); }
 .item p { margin: 0; }
 .item__role { color: var(--text-dim); }
 
+/* Sponsor logos (hackathon page only).
+   --logo-h drives both the logo size and the clear space around it. Brand
+   guidelines, ElevenLabs' included, ask for clear space equal to the logo's
+   height on every side, so padding and height use the same value. */
+.sponsor-list {
+  --logo-h: clamp(1.75rem, 4vw, 2.25rem);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.sponsor { border: var(--stroke) solid var(--mint-dim); }
+.sponsor:hover { border-color: var(--mint); }
+.sponsor__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--logo-h);
+  text-decoration: none;
+}
+/* Width is left to the aspect ratio so no sponsor's logo is ever stretched */
+.sponsor__logo { height: var(--logo-h); width: auto; }
+.sponsor__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-21);
+  color: var(--text);
+}
+
 /* Events */
 .event-list { display: grid; gap: 1rem; }
 .event {
